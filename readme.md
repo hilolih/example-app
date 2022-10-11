@@ -2,6 +2,8 @@
 
 ## sailのインストール
 
+git cloneした先のプロジェクトのルートで以下を実行する。
+
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
