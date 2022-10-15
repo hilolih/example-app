@@ -32,3 +32,11 @@ Tweetというクラス名のModelはtweetsというtableに対応する。
 ### auto_increment不要(P62)
 
     public $auto_increment = false;
+
+## dd(P67)
+
+dump,dieの頭文字。その場で処理を中断して、変数の内容などを出力してくれる。
+
+## bladeのディレクティブ(P70)
+
+'@foreach'みたいな。公式に説明あり。
