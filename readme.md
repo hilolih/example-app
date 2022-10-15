@@ -10,3 +10,25 @@ docker run --rm \
     -w /var/www/html \
     laravelsail/php81-composer:latest \
     composer install --ignore-platform-reqs
+
+
+## Eloquentモデル
+
+テーブル名の指定がない場合、対応するテーブルはクラス名のスネークケースAND複数形のテーブルと
+マッチする。
+
+Tweetというクラス名のModelはtweetsというtableに対応する。
+
+また、複合主キーには対応していない。
+
+### テーブル名のひもづけ(P62)
+
+    protected $table = 'tweet';
+
+### 主キーのひもづけ(P62)
+
+    protected $primaryKey = 'tweet_id';
+
+### auto_increment不要(P62)
+
+    public $auto_increment = false;
