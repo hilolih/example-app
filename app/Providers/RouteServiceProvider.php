@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            Route::pattern('tweetId', '[0-9]+');
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));

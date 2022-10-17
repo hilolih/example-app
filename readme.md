@@ -50,4 +50,7 @@ artisanコマンドで作成したときはreturn falseになっているので�
 
 rulesメソッドはリクエストされる値を検証する（例：'tweet' => required|max:140)。
 
+## PUT(P85)
 
+PUTメソッドはPOSTと同様にリソースの作成や更新を意味する。
+POSTとは違い、「べき等」処理である
