@@ -23,3 +23,5 @@ Route::post('/tweet/create', App\Http\Controllers\Tweet\CreateController::class 
 
 Route::get('/tweet/update/{tweetId}', App\Http\Controllers\Tweet\Update\IndexController::class )->name('tweet.update.index');
 Route::put('/tweet/update/{tweetId}', App\Http\Controllers\Tweet\Update\PutController::class )->name('tweet.update.put');
+
+Route::delete('/tweet/delete/{tweetId}', App\Http\Controllers\Tweet\DeleteController::class )->name('tweet.delete');
