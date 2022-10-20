@@ -1,5 +1,15 @@
 # laravel勉強
 
+## Mysqlコマンド
+
+### databaseの指定
+
+    > use example_app;
+
+### table構造の確認
+
+    > show columns from tweets;
+
 ## sailのインストール
 
 git cloneした先のプロジェクトのルートで以下を実行する。
@@ -124,4 +134,17 @@ app/Http/Kernel.phpに作成したミドルウェアを登録する。
 
 ## 例外(P120)
 アプリケーションでCatchされないものはすべて、 app/Exceptions/Handler.phpでCatchする。
+
+
+## tweetsテーブルにidカラムを追加（p127)
+
+    % sail artisan make:migration add_user_id_to_tweets
+
+## Seederにユーザーを追加
+
+すでにあるつぶやきにuser_idを入れる必要があるため。
+UserのFactoryクラスがすでにあるのは、breezeをインストールしたときに作られているっぽい。
+
+作ったUsersSeederクラスをDatabaseSeederクラスに登録して、migrate:freshコマンドでDBを更新する。
+
 
