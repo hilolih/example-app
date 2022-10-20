@@ -154,3 +154,54 @@ UserのFactoryクラスがすでにあるのは、breezeをインストールし
 ひもづけたモデル同士は、互いを呼び出すことができる
 
 例）Tweetしたユーザー名: $tweet->user->name
+
+## Laravel Mix(P143) →  Viteへ
+
+純粋なjavascriptライブラリなので、Laravel以外でも使える
+Webpackを手軽に使えるようにしているライブラリ。
+
+Laravelのver9からはデフォルトがviteに置き換わった。
+手元のlaravelもver9だったので、以降、viteの説明に置き換える。
+
+### webpack.min.js(P145)
+
+設定は、vite.config.jsに記述されている
+
+### ビルド
+
+    % sail npm run build
+    
+    > build
+    > vite build
+    
+    vite v3.1.8 building for production...
+    ✓ 59 modules transformed.
+    public/build/manifest.json             0.25 KiB
+    public/build/assets/app.e5b50b80.css   22.27 KiB / gzip: 4.74 KiB
+    public/build/assets/app.2896b7a8.js    129.09 KiB / gzip: 46.80 KiB
+
+### sail npm run watch(P147)
+
+実行しておくと、assetが変更されると自動で再ビルドがはしる。
+viteの場合は、refresh: trueとなっていてすでに有効。sail npm run devを実行しておくと
+同様に再ビルドが走るらしい。
+
+### Tailwind CSS
+
+デフォルトでインストール済み。
+
+P148 とapp.cssの少し記載が違う。
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+
+### キャッシュパスティング(P149)
+
+クライアントのブラウザキャッシュを再ビルド時にクリアするしくみ。
+viteでは
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+をbladeにセットするだけでよさそう。
