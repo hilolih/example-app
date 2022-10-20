@@ -221,3 +221,9 @@ resorces/views/componentsに作成したbladeファイルを呼び出すこと�
         <h2 class="text-center text-blue-500 text-4xl font-bold mt-8 mb-8">つぶやきアプリ</h2>
         <x-tweet.form.post></x-tweet.form.post>
     </x-layout.single>
+
+sail npm run buildをしないと、新しいCSSは読み込まれない。その後ブラウザを読み直す必要あり。
+
+### クラスベースコンポーネント
+
+コンポーネント自体で特殊な処理を行いたい場合
