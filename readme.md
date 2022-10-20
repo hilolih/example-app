@@ -148,3 +148,9 @@ UserのFactoryクラスがすでにあるのは、breezeをインストールし
 作ったUsersSeederクラスをDatabaseSeederクラスに登録して、migrate:freshコマンドでDBを更新する。
 
 
+## ORMの1:M表現(P133)
+
+モデル同士を紐づけることができる $this->hasMany(Tweet::class)みたいなかんじで。
+ひもづけたモデル同士は、互いを呼び出すことができる
+
+例）Tweetしたユーザー名: $tweet->user->name
