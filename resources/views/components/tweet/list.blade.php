@@ -9,7 +9,7 @@
                 <span class="inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs mb-2">
                     {{$tweet->user->name}}
                 </span>
-                <p class="text-gray-600">{!! nl2br($tweet->content)!!}</p>
+                <p class="text-gray-600">{!! nl2br(e($tweet->content))!!}</p>
             </div>
             <div>
                 <x-tweet.options :tweetId="$tweet->id" :userId="$tweet->user_id"></x-tweet.options>
