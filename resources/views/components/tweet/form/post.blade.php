@@ -11,9 +11,11 @@
         </div>
         <p class="mt-2 text-sm text-gray-500">140文字まで</p>
         @error('tweet')
-        <p style="color: red;">{{ $message }}</p>
+        <x-alert.error>{{ $message }}</x-alert.error>
         @enderror
-        <button type="submit">投稿</button>
+        <div class="flex flex-wrap justify-end">
+           <x-element.button>つぶやく</x-element.button>
+        </div>
     </form>
 </div>
 @endauth
