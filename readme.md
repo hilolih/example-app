@@ -205,3 +205,19 @@ viteでは
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 をbladeにセットするだけでよさそう。
+
+## bladeのコンポーネント(P150)
+
+### 匿名コンポーネント
+
+resorces/views/componentsに作成したbladeファイルを呼び出すことができる
+
+### tailwind cssのmax-w-screen-wmが有効にならない
+
+よくわからないが、h2タグを入れたらちゃんと表示されるようになった。
+その後h2タグを消しても問題なし。キャッシュと思うことにする。
+
+    <x-layout.single>
+        <h2 class="text-center text-blue-500 text-4xl font-bold mt-8 mb-8">つぶやきアプリ</h2>
+        <x-tweet.form.post></x-tweet.form.post>
+    </x-layout.single>
