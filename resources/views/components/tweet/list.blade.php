@@ -16,20 +16,6 @@
                 <!-- TODO 編集と削除 -->
             </div>
         </li>
-        <!--<details>
-            <summary>{{ $tweet->content }} by {{$tweet->user->name}}</summary>
-            @if(\Illuminate\Support\Facades\Auth::id() === $tweet->user_id)
-            <a href="{{ route('tweet.update.index', ['tweetId' => $tweet->id]) }}">編集</a>
-            <form action="{{ route('tweet.delete', ['tweetId' => $tweet->id]) }}", method="post">
-                @method('DELETE')
-                @csrf
-                <button type="submit">削除</button>
-            </form>
-            @else
-                編集できません
-            @endif
-        </details>
-        -->
         @endforeach
     </ul>
 </div>

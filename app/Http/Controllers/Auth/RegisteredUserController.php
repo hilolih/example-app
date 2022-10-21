@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+use App\Mail\NewUserIntroduction;
+use Illuminate\Contracts\Mail\Mailer;
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -31,7 +34,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, Mailer $mailer)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -48,6 +51,10 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        // メールの送信処理
+        $mailer->to('test@example.com')->send(new NewUserIntroduction());
+        
 
         return redirect(RouteServiceProvider::HOME);
     }
