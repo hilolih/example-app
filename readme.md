@@ -233,3 +233,10 @@ sail npm run buildをしないと、新しいCSSは読み込まれない。そ�
 
 sail環境にプリインストール済み。開発時は、パスワードリセット時のメールなども
 http://localhost:8025にメールがとぶ(config/mail.php, .env)
+
+
+## メールのスタイルをカスタマイズ(P191)
+
+    $ sail artisan vendor:publish --tag=laravel-mail
+
+
