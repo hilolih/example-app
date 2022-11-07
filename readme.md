@@ -237,6 +237,18 @@ http://localhost:8025にメールがとぶ(config/mail.php, .env)
 
 ## メールのスタイルをカスタマイズ(P191)
 
+vendor:publishコマンドで、フレームワークのソースコードの一部をプロジェクトにコピーして、改変する
+
     $ sail artisan vendor:publish --tag=laravel-mail
 
 
+## Jobの実行 (P196)
+
+sail artisan tinkerでJobを実行すると日本語がSJISで出力されて文字化けする
+
+### Queue
+
+デフォルトでは"sync”が選択されているので、同期実行。
+envのQUEUE_CONNECTIONをdatabaseに変更する。
+キュー設定の記述があるconfig/queue.phpにはdatabaseのほかにsqsもあった。
+AWSに直接jobを投げることも可能か
