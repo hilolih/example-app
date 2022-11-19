@@ -20,6 +20,11 @@ class IndexController extends Controller
         //$tweets = Tweet::all();
         //$tweets = Tweet::orderBy('created_at', 'DESC')->get();
         $tweets = $tweetService->getTweets();
+        // P230 dumpして、データやクエリを確認できる
+        // throw new Errorで例外発生させて停止。
+        // dump($tweets);
+        // app(\App\Exceptions\Handler::class)->render(request(), throw new \Error('dump report'));
+        //
         //dd($tweets);
         return view('tweet.index')
             ->with('name', 'laravel')

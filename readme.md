@@ -300,7 +300,32 @@ imagemagickでダミー画像をつくり、ファイルコピーするように
         return new \RuntimeException('The image formatter downloads an image from a remote HTTP server. Therefore, it requires that PHP can request remote hosts, either via cURL or fopen()');
     }
 
+## P228 Eager Loading
 
+with()をつけて、Tweet取得時にまとめてImageも取得する（app/Services/TweetService.php)
 
+    return Tweet::with('images')->orderBy('created_at', 'DESC')->get();
 
+## P234 alpineで画像が拡大されるが、右下にずれる
 
+ちゃんと読んでいなかった。
+
+    CSS反映のためにsail npm run developmentを実行しましょう
+
+### ?
+
+そんなパラメータはないと怒られる
+
+    sail npm run devlopment
+
+画像が縮小表示されず、そもそもおかしい
+
+    sail npm run dev
+
+正しい表示になるが、フォアグラウンドで動き続けるのでじゃま
+
+    npm run dev
+
+やっぱりこれが正解。
+
+    % sail npm run build
