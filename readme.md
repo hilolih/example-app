@@ -329,3 +329,10 @@ with()をつけて、Tweet取得時にまとめてImageも取得する（app/Ser
 やっぱりこれが正解。
 
     % sail npm run build
+
+
+## P237 DBファサードを利用してトランザクションを作成
+
+use()は関数外で定義した変数を利用する際に使用します。
+
+    DB::transaction(function () use ($userId, $content, $images) { ... });
