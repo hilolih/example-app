@@ -147,6 +147,8 @@ UserのFactoryクラスがすでにあるのは、breezeをインストールし
 
 作ったUsersSeederクラスをDatabaseSeederクラスに登録して、migrate:freshコマンドでDBを更新する。
 
+    % sail artisan migrate:fresh --seed
+
 
 ## ORMの1:M表現(P133)
 
@@ -252,3 +254,53 @@ sail artisan tinkerでJobを実行すると日本語がSJISで出力されて文
 envのQUEUE_CONNECTIONをdatabaseに変更する。
 キュー設定の記述があるconfig/queue.phpにはdatabaseのほかにsqsもあった。
 AWSに直接jobを投げることも可能か
+
+
+## ImageFactoryの$this->faker->image()が動作しない
+
+P226のダミー画像を作成するfakerが動作しない。
+https://via.placeholder.comというサイトにcurlで取得しにいくようになっていたが
+サイト側（cloudfare?）の仕様変更でcurlではアクセスできなくなっていた。
+imagemagickでダミー画像をつくり、ファイルコピーするようにライブラリを手動で修正した。
+
+    % convert -size 1000x1000 xc:pink pink.png
+    % cp -p pink.png storage/app/public/images 
+
+ライブラリを直接編集したため、gitで管理されていない。注意が必要。
+
+143行目あたりから。
+    // save file
+    // if (function_exists('curl_exec')) {
+    //     // use cURL
+    //     $fp = fopen($filepath, 'w');
+    //     $ch = curl_init($url);
+    //     curl_setopt($ch, CURLOPT_FILE, $fp);
+    //     $success = curl_exec($ch) && curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200;
+    //     fclose($fp);
+    //     curl_close($ch);
+
+    //     if (!$success) {
+    //         unlink($filepath);
+
+    //         // could not contact the distant URL or HTTP error - fail silently.
+    //         return false;
+    //     }
+    // } elseif (ini_get('allow_url_fopen')) {
+    //     // use remote fopen() via copy()
+    //     $success = copy($url, $filepath);
+
+    //     if (!$success) {
+    //         // could not contact the distant URL or HTTP error - fail silently.
+    //         return false;
+    //     }
+    $pink_jpg = $dir . DIRECTORY_SEPARATOR . "pink.png";
+    $success = copy($pink_jpg, $filepath);
+
+    if (!$success) {
+        return new \RuntimeException('The image formatter downloads an image from a remote HTTP server. Therefore, it requires that PHP can request remote hosts, either via cURL or fopen()');
+    }
+
+
+
+
+
