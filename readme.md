@@ -300,6 +300,8 @@ imagemagickでダミー画像をつくり、ファイルコピーするように
         return new \RuntimeException('The image formatter downloads an image from a remote HTTP server. Therefore, it requires that PHP can request remote hosts, either via cURL or fopen()');
     }
 
+追記：P247のsail testで失敗するので、ファイルは元に戻した。上記修正ファイルはvendor/fakerphp/faker/src/Faker/Provider/Image.php.nocurlとしてバックアップ。
+
 ## P228 Eager Loading
 
 with()をつけて、Tweet取得時にまとめてImageも取得する（app/Services/TweetService.php)
@@ -336,3 +338,16 @@ with()をつけて、Tweet取得時にまとめてImageも取得する（app/Ser
 use()は関数外で定義した変数を利用する際に使用します。
 
     DB::transaction(function () use ($userId, $content, $images) { ... });
+
+
+
+## P247 sail test
+
+現状は全てのデータが消える
+
+## P256, P261 DB_DATABASEをコメントアウトする
+
+テキストと項目数が少し違う。以下をコメントアウトしないと、P261のテストに通らない
+
+
+    <!--<env name="DB_DATABASE" value="testing"/>-->
