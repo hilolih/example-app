@@ -350,4 +350,17 @@ use()は関数外で定義した変数を利用する際に使用します。
 テキストと項目数が少し違う。以下をコメントアウトしないと、P261のテストに通らない
 
 
+## GitHub Action
+
+テキストどおりにやっても、AuthまわりのテストがLaravel9から導入されたviteによりこける。
+Feature/Auth配下のテストに以下を追加する
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutVite();
+    }
+
+
     <!--<env name="DB_DATABASE" value="testing"/>-->
