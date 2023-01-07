@@ -1,5 +1,9 @@
 # laravel勉強
 
+## 23/01/07 terraform
+
+terraformを使ってawsにdeployする。
+
 ## Mysqlコマンド
 
 ## 22/11/29 追記 再度作ったときにmysqlログインエラー
