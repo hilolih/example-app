@@ -2,6 +2,45 @@
 
 ## Mysqlコマンド
 
+## 22/11/29 追記 再度作ったときにmysqlログインエラー
+
+sail mysqlで入ろうと思ったら以下のエラー
+
+    % ERROR 1045 (28000): Access denied for user 'sail'@'localhost' (using password: YES)
+
+サイト（https://zenn.dev/hdmt/scraps/21d443a07c7bd5)を参考に    
+sail tinkerでlaravelがきちんとDB設定を読み込んでいることを確認。
+
+    [DESKTOP-T26JOGB:~/src/reflections:0]% sail tinker
+    Psy Shell v0.11.9 (PHP 8.1.13 — cli) by Justin Hileman
+    > config('database.connections.mysql')
+    = [
+        "driver" => "mysql",
+        "url" => null,
+        "host" => "mysql",
+        "url" => null,
+        "host" => "mysql",
+        "port" => "3306",
+        "database" => "reflections",
+        "username" => "sail",
+        "password" => "password",
+        "unix_socket" => "",
+        "charset" => "utf8mb4",
+        "collation" => "utf8mb4_unicode_ci",
+        "prefix" => "",
+        "prefix_indexes" => true,
+        "strict" => true,
+        "engine" => null,
+        "options" => [],
+      ]
+
+.envがない状態だった参考サイトとは違うが、うまくDBが作られていないことが原因のようなので、
+作り直した
+
+    [DESKTOP-T26JOGB:~/src/reflections:130]% sail down --rmi all -v
+
+
+
 ### databaseの指定
 
     > use example_app;
